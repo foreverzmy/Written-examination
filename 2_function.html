@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <script>
+   /*
+    var f=function(){var a=     b=1;};
+    f();
+    console.log(b);//1
+    console.log(a);//报错
+   */
+   /*
+    var f=function(){var a=b=1;};
+    setTimeout(f,0);
+    console.log(b);//报错
+    //f();
+   */
+   /*
+    var a,b=0,fn=function(){var a=b=2;};
+    fn();
+    console.log(a);//undefined
+    console.log(b);//2
+   */
+   /*函数currying
+   //函数可反复调用，且每次调用时都可追加新的参数
+    function add(n){
+      return function(m){
+        n+=m;
+        arguments.callee.toString=
+          function(){return n};
+        return arguments.callee;
+      }
+    }
+    alert(add(1)(2)(3));//6
+    alert(add(1)(2)(3)(4));//10
+   */
+var emp={
+  work:function(){
+    var sum=0;
+    for(var i=0;
+        i<arguments.length&&arguments[0]>0;
+        i++){
+      sum+=arguments[i]
+          +arguments.callee(--arguments[i]);
+    }
+    return sum;
+  }
+}
+console.log(emp.work(3,2,1));//10
+  </script>
+ </body>
+</html>

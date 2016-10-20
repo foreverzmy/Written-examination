@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+	//1. 函数记忆:
+	//让函数记住处理过的数据
+	//为什么:避免重复执行复杂的运算
+	//如何使用:
+		//用闭包将函数处理过的参数和处理结果保存起来
+  //实现一个函数，判断n是不是质数
+  function isPrime1(n){
+    if(n<=3){return true;}
+    else{
+      for(var i=2;i<=Math.sqrt(n);i++){
+        if(n%i==0){return false;}
+      }
+      return true;
+    }
+  }
+  console.log(isPrime1(12));
+  console.log(isPrime1(17));
+
+  var isPrime2=(function(){
+    var hash={};
+    return function(n){
+      if(n<3){return true;}
+      else{
+        if(hash[n]!==undefined){
+          return hash[n];
+        }else{
+          for(var i=2;i<=Math.sqrt(n);i++){
+           if(n%i==0){return hash[n]=false;}
+          }
+          return hash[n]=true;
+        }
+      }
+    }
+  })();
+  for(var i=0,arr=[];i<1000000;i++)
+    arr.push(Math.floor(Math.random()*1000))
+  console.time("isPrime1");
+  for(var i=0;i<arr.length;i++)
+    isPrime1(arr[i]);
+  console.timeEnd("isPrime1");
+  console.time("isPrime2");
+  for(var i=0;i<arr.length;i++)
+    isPrime2(arr[i]);
+  console.timeEnd("isPrime2");
+  </script>
+ </body>
+</html>

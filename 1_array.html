@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <script>
+    //数组降维
+    var arr=[
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0]
+    ];
+    /*1. 遍历二维数组
+    for(var r=0,result=[];r<arr.length;r++){
+      for(var c=0;c<arr[r].length;c++){
+        result.push(arr[r][c]);
+      }
+    }
+    */
+    /*2. concat
+    for(var r=0,result=[];r<arr.length;r++){
+      result=result.concat(arr[r]);
+    }*/
+    /*3. apply+concat*/
+    var result=
+      Array.prototype.concat.apply([],arr);
+    console.dir(result);
+  </script>
+ </body>
+</html>

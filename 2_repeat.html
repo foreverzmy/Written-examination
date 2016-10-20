@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <script>
+    var arr=["a","b","a","c","b","a"];
+    function unique1(arr){
+     for(var i=0,unique=[];
+          i<arr.length;
+            i++){
+      //如果unique中不包含当前元素值
+      if(unique.indexOf(arr[i])==-1){
+        //就将当前元素值压入unique
+        unique.push(arr[i]);
+      }
+     }
+     return unique;
+    }
+    function unique2(arr){
+      for(var i=0,hash={};
+          i<arr.length;
+            i++){
+        //如果unique中不包含当前元素值
+        if(hash[arr[i]]===undefined){
+          //就将当前元素值压入unique
+          hash[arr[i]]=1;
+        }
+      }
+      //提取hash中所有key
+      var i=0;
+      var keys=[];
+      for(keys[i++] in hash);
+      return keys;//["a":1,"b":1,"c":1]
+                  //["a","b","c"]
+    }
+    console.log(String(unique1(arr)));
+    console.log(String(unique2(arr)));
+
+    function unique3(arr){
+      var reg=/(^|,,)([^,]+)(,,\2)*/g;
+      return arr.sort()
+                .join(",,")
+                .replace(reg,"$1$2")
+                .split(",,");
+    }
+    console.log(String(unique3(arr)));
+
+    for(var i=0,nums=[];i<100000;i++){
+      nums.push(
+        Math.floor(Math.random()*1000)
+      )
+    }
+    console.time("unique1");
+    unique1(nums);
+    console.timeEnd("unique1");
+    console.time("unique2");
+    unique2(nums);
+    console.timeEnd("unique2");
+  </script>
+ </body>
+</html>

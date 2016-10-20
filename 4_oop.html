@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <script>
+  /*
+    window.a=300;
+    function fn1(){
+      this.a=100;
+      this.b=200;
+      return function(){
+        alert(this.a);
+      }.call(arguments[0]);
+    }
+    function fn2(){
+      this.a=new fn1();
+    }
+    var a=new fn1().b;//300
+        //{a:100,b:200}.b
+    //a=200
+    var v=new fn1(fn2());
+          //200 [object Object]
+    //fn2(): a={a:100,b:200}
+    //v:{a:100,b:200}
+  */
+  /*
+    function Human(){
+      var c=function(){var a=200;}
+      return c;
+    }//如果构造函数返回一个引用类型的对象，则不再创建新对象
+    var kang=new Human();
+    var feng=new Human();
+    var x=Human();
+    console.log(feng==x);//false
+    console.log(kang===feng);//false
+  */
+  /*
+    var arr=[];
+    function fun(){
+      for(var i=0;i<4;i++){
+        var x={};
+        x.no=i;
+        x.text=arr[i];
+        x.fun=function(){alert(i)}
+        arr.push(x);
+      }
+    }
+    fun();
+    arr[0].fun();//4
+    arr[1].fun();//4
+    arr[2].fun();//4
+    arr[3].fun();//4
+  */
+  /*
+    var setObj=function(o){
+      o.name="xiaoming";
+      o={};
+      o.name="xiaohong";
+    }
+    var p={name:"xixi",age:24};
+    setObj(p);
+    console.log(p);
+    //{name:"xiaoming",age:24}
+  */
+  /*
+    //包装类型:
+    var str="Hello";
+    str.len=100;//new String(str).len
+    console.log(str.len);//undefined
+            //new String(str).len
+    str=new String("Hello");
+    str.len=100;
+    console.log(str.len);//100
+  */
+  /*
+    var number=2;//8
+    var obj={
+      number:4,//8
+      fn1:(function(){
+        this.number*=2;
+        number*=2;
+        var number=3;
+        return function(){
+          this.number*=2;
+          number*=3;
+          alert(number);
+        }
+      })()
+      //fn1:function(){//number=27
+          //this.number*=2;
+          //number*=3;
+          //alert(number);
+      //}
+    }
+    var fn1=obj.fn1;
+    alert(number);//4
+    fn1();//9
+    obj.fn1();//27
+    alert(window.number);//8
+    alert(obj.number);//8
+  */
+  /*
+    var x=5,o={
+      x:10,
+      doit:function doit(){
+        var x=20;
+        setTimeout(
+          function(){alert(this.x)},10
+        );
+      }
+    }
+    alert(o.doit());//undefined  5
+  */
+  </script>
+ </body>
+</html>
